@@ -1,0 +1,19 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        /*Approach: Move all non zero number forward (keep track of number of 0s). add 0s to the end*/
+        //TC: O(n);
+        //SC:O(1);
+        int j=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=0){
+                nums[j]=nums[i];
+                j++;
+            }
+        }
+
+        while(j<nums.length){
+            nums[j]=0;
+            j++;
+        }
+    }
+}
