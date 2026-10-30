@@ -1,0 +1,31 @@
+class Solution {
+    public int[] intersectionArray(int[] nums1, int[] nums2) {
+        /*Approach: let i,j be pointers to nums1 and nums2. if both the elements are same, add to arraylist and increment i and j. else, increment the smaller value pointer*/
+        //TC: O(n1+n2);
+        //SC:O(n1+n2);
+        int i=0;
+        int j=0;
+        int n1=nums1.length;
+        int n2=nums2.length;
+        ArrayList<Integer> list=new ArrayList<>();
+        while(i<n1 && j<n2){
+            if(nums1[i]==nums2[j]){
+                list.add(nums1[i]);
+                i++;
+                j++;
+            }
+            else if(nums1[i]>nums2[j]){
+                j++;
+            }
+            else{
+                i++;
+            }
+        }
+
+        int[] answer=new int[list.size()];
+        for(int k=0;k<list.size();k++){
+            answer[k]=list.get(k);
+        }
+        return answer;
+    }
+}
