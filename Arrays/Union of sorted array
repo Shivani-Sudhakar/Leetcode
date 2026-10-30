@@ -1,0 +1,56 @@
+class Solution {
+    public int[] unionArray(int[] nums1, int[] nums2) {
+        /*Approach=take i and j as pointer for 1st and 2nd array respectively. add the smallest element in the arraylist if the prev element in array list isn't the current element*/
+        //TC: O(n1+n2);
+        //SC:O(n1+n2);
+    int i = 0, j = 0;
+    int n1 = nums1.length;
+    int n2 = nums2.length;
+
+    ArrayList<Integer> list = new ArrayList<>();
+
+    while (i < n1 && j < n2) {
+        int element;
+
+        if (nums1[i] < nums2[j]) {
+            element = nums1[i];
+            i++;
+        }
+        else if (nums2[j] < nums1[i]) {
+            element = nums2[j];
+            j++;
+        }
+        else {
+            element = nums1[i];
+            i++;
+            j++;
+        }
+
+        if (list.isEmpty() || list.get(list.size()-1) != element) {
+            list.add(element);
+        }
+    }
+
+    while (i < n1) {
+        if (list.isEmpty() || list.get(list.size()-1) != nums1[i]) {
+            list.add(nums1[i]);
+        }
+        i++;
+    }
+
+    while (j < n2) {
+        if (list.isEmpty() || list.get(list.size()-1) != nums2[j]) {
+            list.add(nums2[j]);
+        }
+        j++;
+    }
+
+    int[] answer = new int[list.size()];
+
+    for (int k = 0; k < list.size(); k++) {
+        answer[k] = list.get(k);
+    }
+
+    return answer;
+}
+}
