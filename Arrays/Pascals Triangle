@@ -1,0 +1,32 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        /*Approach: if the number of rows is one, return 1. Else, create an ArrayList, add 1, get the previous array inserted and add the j and j+1 value. Add 1 at the end. 
+        In this instead of adding the temporary arraylist, use new ArrayList<>(insert). This creates a copy instead of storing the actual array list*/
+        //TC: $O(n^2)$
+        //SC: $O(n^2)$
+        List<List<Integer>> ans=new ArrayList<>();
+        List<Integer> insert=new ArrayList<Integer>();
+
+        if (numRows==1){
+            insert.add(1);
+            ans.add(insert);
+            return ans;
+        }
+
+        insert.add(1);
+        ans.add(new ArrayList<>(insert));
+        insert.clear();
+        for(int i=1;i<numRows;i++){
+            int j=0;
+            insert.add(1);
+            while(j<ans.get(i-1).size()-1){
+                insert.add(ans.get(i-1).get(j)+ans.get(i-1).get(j+1));
+                j++;
+            }
+            insert.add(1);
+            ans.add(new ArrayList<>(insert));
+            insert.clear();
+        }
+        return ans;
+    }
+}
