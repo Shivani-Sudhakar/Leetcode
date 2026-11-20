@@ -1,0 +1,23 @@
+class Solution {
+    public int pascalTriangleI(int r, int c) {
+        /*Approach: use the formula n-1Cr-1. The numerator should have m terms and the denominator should have m terms. 
+        Also, use the formula nCr=nCn-r*/
+        //TC: O(n)
+        //SC: O(1)
+        int n=r-1;
+        int m=c-1;
+        long num=1;
+        long den=1;
+
+        if(m > n-m) {
+           m = n-m;
+        }
+
+        for(int i=0; i<m; i++){
+            num*=n-i;
+            den*=m-i;
+        }
+
+        return (int)(num/den);
+    }
+}
