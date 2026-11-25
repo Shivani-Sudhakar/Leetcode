@@ -1,0 +1,29 @@
+class Solution {
+    public void rotate(int[][] mat) {
+        /*Approach: Find transpose of the given matrix and reverse each row.
+        To find transpose, swap mat[i][j] with mat[j][i]. Then, reverse each 
+        row using 2 pointer approach*/
+        //TC: O(n^2)
+        //SC:O(1)
+        int n=mat.length;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int a=mat[i][j];
+                mat[i][j]=mat[j][i];
+                mat[j][i]=a;
+            }
+        }
+
+        for(int i=0;i<n;i++){
+            int left=0;
+            int right=n-1;
+            while(left<right){
+                int temp=mat[i][left];
+                mat[i][left]=mat[i][right];
+                mat[i][right]=temp;
+                left++;
+                right--;
+            }
+        }
+    }
+}
